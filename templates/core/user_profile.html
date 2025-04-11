@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profiles{% endblock %}
+
+{% block content %}
+    <h4 class="center-align">Registered Users</h4>
+
+    <div class="row">
+        {% for user in users %}
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ user.name }}</span>
+                        <p>Email: {{ user.email }}</p>
+                        <p>Phone: {{ user.phone }}</p>
+                        <p>Address: {{ user.address }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="center-align">No users found.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

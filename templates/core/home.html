@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="section center-align">
+    <h3>Welcome to FoodPlease</h3>
+    <p class="flow-text">Order your favorite meals with a few clicks.</p>
+    <a href="{% url 'product_list' %}" class="btn-large teal">View Menu</a>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Order History{% endblock %}
+
+{% block content %}
+<h4 class="center-align">Order History</h4>
+
+{% if orders %}
+<ul class="collection with-header">
+    {% for order in orders %}
+    <li class="collection-item">
+        <div>
+            <strong>Order #{{ order.id }}</strong> — {{ order.order_date|date:"Y-m-d H:i" }}<br>
+            <span>Status: <span class="badge {{ order.status|lower }}">{{ order.get_status_display }}</span></span><br>
+            <span>Total: <strong>${{ order.total_amount }}</strong></span><br>
+            <span>Products:
+                {% for product in order.products.all %}
+                    <span class="new badge teal lighten-2" data-badge-caption="{{ product.name }}"></span>
+                {% endfor %}
+            </span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="center-align">No orders yet.</p>
+{% endif %}
+{% endblock %}

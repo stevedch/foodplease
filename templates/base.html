@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}FoodPlease{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Google Fonts (optional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: 'Rubik', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        main.container {
+            flex: 1 0 auto;
+            margin-top: 30px;
+            margin-bottom: 60px;
+        }
+
+        footer.page-footer {
+            flex-shrink: 0;
+            padding-top: 10px;
+        }
+
+        .card-image img {
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px;
+        }
+
+        .btn-large {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="teal">
+    <div class="nav-wrapper container">
+        <a href="{% url 'home' %}" class="brand-logo">
+            <img src="{% static 'img/iconfoooplese.png' %}" alt="FoodPlease Logo"
+                 style="height: 200px;margin-top: -62px;margin-right: 0;">
+        </a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{% url 'product_list' %}"><i class="material-icons left">restaurant_menu</i>Menu</a></li>
+            <li><a href="{% url 'create_order' %}"><i class="material-icons left">shopping_cart</i>Order</a></li>
+            <li><a href="{% url 'order_history' %}"><i class="material-icons left">history</i>My Orders</a></li>
+            <li><a href="{% url 'user_profile' %}"><i class="material-icons left">person</i>Profile</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="page-footer teal lighten-2">
+    <div class="container center-align">
+        <p class="white-text">&copy; 2025 FoodPlease. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!-- Init select -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var selects = document.querySelectorAll('select');
+        M.FormSelect.init(selects);
+    });
+</script>
+
+</body>
+</html>
