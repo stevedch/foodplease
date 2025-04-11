@@ -17,14 +17,15 @@
                         {% endif %}
                     </div>
                     <div class="card-content">
-                        <h5 class="teal-text text-darken-2"
-                            style="margin-top: 0; margin-bottom: 10px;">{{ item.name }}</h5>
-                        <p class="grey-text text-darken-1">{{ item.description }}</p>
+                        <div>
+                            <h5 class="teal-text text-darken-2" style="margin-top: 0;">{{ item.name }}</h5>
+                            <p class="grey-text text-darken-1">{{ item.description }}</p>
+                        </div>
                     </div>
                     <div class="card-action">
                         <span class="teal-text text-darken-3"><strong>${{ item.price }}</strong></span>
-                        <button class="btn-small teal darken-1 right add-to-cart" data-id="{{ item.id }}">
-                            <i class="material-icons left">add_shopping_cart</i>Add
+                        <button class="btn teal darken-1 add-to-cart" data-id="{{ item.id }}">
+                            <i class="material-icons left">add_shopping_cart</i>Add to Cart
                         </button>
                     </div>
                 </div>
@@ -77,4 +78,39 @@
             });
         });
     </script>
+    <style>
+        .card-content h5 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #555;
+            min-height: 60px;
+            margin-bottom: 0;
+        }
+
+        .card-action {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 16px;
+        }
+
+        .card-action span {
+            font-size: 16px;
+            font-weight: bold;
+            color: #00695c;
+            text-align: center;
+            width: 100%;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+    </style>
 {% endblock %}
