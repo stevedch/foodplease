@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="container" style="width: 100%; max-width: 100%;">
+    <h4 class="center-align">Your Cart</h4>
+    {% if items %}
+    <div class="card">
+        <div class="card-content">
+            <table class="highlight responsive-table striped full-width-table">
+                <thead class="teal lighten-1 white-text">
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>
+                            <form method="post" action="{% url 'remove_from_cart' item.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-flat red-text">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="teal lighten-5">
+                        <td><strong>Total</strong></td>
+                        <td><strong>${{ total }}</strong></td>
+                        <td>
+                            <form method="post" action="{% url 'clear_cart' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn red lighten-1 white-text">Clear Cart</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="card-panel yellow lighten-4 center-align">
+        <p>Your cart is currently empty.</p>
+    </div>
+    {% endif %}
+</div>
+<style>
+.full-width-table {
+    width: 100%;
+    table-layout: auto;
+}
+
+.card-content {
+    padding: 0;
+}
+
+table.striped > tbody > tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table th, table td {
+    padding: 16px;
+    text-align: left;
+}
+
+.card {
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.teal.lighten-1 {
+    background-color: #26a69a !important;
+}
+</style>
+{% endblock %}

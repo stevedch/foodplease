@@ -1,0 +1,202 @@
+[
+  {
+    "model": "core.menuitem",
+    "pk": 1,
+    "fields": {
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with fresh mozzarella and basil.",
+      "price": "8.50",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 2,
+    "fields": {
+      "name": "Chicken Sandwich",
+      "description": "Grilled chicken breast with lettuce and tomato.",
+      "price": "7.00",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 3,
+    "fields": {
+      "name": "Veggie Burger",
+      "description": "A hearty burger made with black beans and quinoa.",
+      "price": "6.50",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 4,
+    "fields": {
+      "name": "Caesar Salad",
+      "description": "Romaine lettuce with Caesar dressing, croutons and parmesan.",
+      "price": "4.95",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 5,
+    "fields": {
+      "name": "Beef Tacos",
+      "description": "Three soft shell tacos with seasoned beef and salsa.",
+      "price": "6.25",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 6,
+    "fields": {
+      "name": "Spaghetti Bolognese",
+      "description": "Classic Italian pasta with slow-cooked meat sauce.",
+      "price": "8.50",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 7,
+    "fields": {
+      "name": "BBQ Ribs",
+      "description": "Tender pork ribs with smoky barbecue sauce.",
+      "price": "12.99",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 8,
+    "fields": {
+      "name": "Sushi Platter",
+      "description": "Assorted fresh sushi rolls and nigiri.",
+      "price": "14.00",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 9,
+    "fields": {
+      "name": "Fried Chicken",
+      "description": "Crispy golden-brown fried chicken with spices.",
+      "price": "9.75",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 10,
+    "fields": {
+      "name": "Pad Thai",
+      "description": "Stir-fried rice noodles with tofu, peanuts and lime.",
+      "price": "7.99",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 11,
+    "fields": {
+      "name": "Grilled Salmon",
+      "description": "Fresh salmon fillet grilled to perfection.",
+      "price": "13.50",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 12,
+    "fields": {
+      "name": "Burrito Bowl",
+      "description": "Layered rice, beans, salsa, and grilled chicken.",
+      "price": "6.95",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 13,
+    "fields": {
+      "name": "Pho",
+      "description": "Vietnamese noodle soup with beef and fresh herbs.",
+      "price": "7.50",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 14,
+    "fields": {
+      "name": "Pancake Stack",
+      "description": "Fluffy pancakes served with syrup and butter.",
+      "price": "4.25",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 15,
+    "fields": {
+      "name": "Cheesecake Slice",
+      "description": "Creamy cheesecake on a graham cracker crust.",
+      "price": "3.95",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 16,
+    "fields": {
+      "name": "Fruit Smoothie",
+      "description": "Blend of fresh seasonal fruits with yogurt.",
+      "price": "3.50",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 17,
+    "fields": {
+      "name": "Fish & Chips",
+      "description": "Crispy battered fish with fries and tartar sauce.",
+      "price": "9.99",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 18,
+    "fields": {
+      "name": "Ramen",
+      "description": "Japanese noodle soup with pork, egg and vegetables.",
+      "price": "8.25",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 19,
+    "fields": {
+      "name": "Grilled Veggie Sandwich",
+      "description": "Roasted vegetables on toasted sourdough.",
+      "price": "5.75",
+      "image_url": ""
+    }
+  },
+  {
+    "model": "core.menuitem",
+    "pk": 20,
+    "fields": {
+      "name": "Lentil Soup",
+      "description": "Hearty lentil soup with carrots and herbs.",
+      "price": "4.80",
+      "image_url": ""
+    }
+  }
+]

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+    <h4 class="center-align">Our Menu</h4>
+    <div class="row">
+        {% for item in menu_items %}
+            <div class="col s12 m6 l4">
+                <div class="card medium hoverable">
+                    <div class="card-image">
+                        {% if item.image_url %}
+                            <img src="{{ item.image_url }}" alt="{{ item.name }}">
+                        {% else %}
+                            <img src="{% static 'img/default_menu_item.png' %}" alt="No Image">
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <h5 class="teal-text text-darken-2"
+                            style="margin-top: 0; margin-bottom: 10px;">{{ item.name }}</h5>
+                        <p class="grey-text text-darken-1">{{ item.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <span class="teal-text text-darken-3"><strong>${{ item.price }}</strong></span>
+                        <button class="btn-small teal darken-1 right add-to-cart" data-id="{{ item.id }}">
+                            <i class="material-icons left">add_shopping_cart</i>Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="center-align">No items available in the menu.</p>
+        {% endfor %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function () {
+                    const itemId = this.dataset.id;
+                    fetch(`/cart/add/${itemId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                        },
+                    }).then(() => {
+                        fetch('/cart/count/')
+                            .then(response => response.json())
+                            .then(data => {
+                                let badge = document.querySelector('.cart-badge');
+                                if (!badge) {
+                                    const cartLink = document.querySelector('a[href$="/cart/"]');
+                                    badge = document.createElement('span');
+                                    badge.className = 'cart-badge';
+                                    badge.style.position = 'absolute';
+                                    badge.style.top = '10px';
+                                    badge.style.right = '53px';
+                                    badge.style.backgroundColor = 'red';
+                                    badge.style.color = 'white';
+                                    badge.style.borderRadius = '50%';
+                                    badge.style.fontSize = '11px';
+                                    badge.style.fontWeight = 'bold';
+                                    badge.style.width = '20px';
+                                    badge.style.height = '20px';
+                                    badge.style.textAlign = 'center';
+                                    badge.style.display = 'flex';
+                                    badge.style.justifyContent = 'center';
+                                    badge.style.alignItems = 'center';
+                                    cartLink.appendChild(badge);
+                                }
+                                badge.innerText = data.count;
+                                badge.style.display = data.count > 0 ? 'flex' : 'none';
+                                M.toast({html: 'Item added to cart'});
+                            });
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}
