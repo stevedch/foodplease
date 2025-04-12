@@ -13,6 +13,8 @@
                     <tr>
                         <th>Item</th>
                         <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -21,6 +23,8 @@
                     <tr>
                         <td>{{ item.name }}</td>
                         <td>${{ item.price }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.subtotal }}</td>
                         <td>
                             <form method="post" action="{% url 'remove_from_cart' item.id %}" style="display:inline;">
                                 {% csrf_token %}
@@ -30,7 +34,7 @@
                     </tr>
                     {% endfor %}
                     <tr class="teal lighten-5">
-                        <td><strong>Total</strong></td>
+                        <td colspan="3"><strong>Total</strong></td>
                         <td><strong>${{ total }}</strong></td>
                         <td>
                             <form method="post" action="{% url 'clear_cart' %}">
@@ -49,6 +53,7 @@
     </div>
     {% endif %}
 </div>
+
 <style>
 .full-width-table {
     width: 100%;

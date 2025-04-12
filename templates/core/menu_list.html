@@ -35,11 +35,11 @@
         {% endfor %}
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', function () {
-                    const itemId = this.dataset.id;
-                    fetch(`/cart/add/${itemId}/`, {
+                button.addEventListener('click', () => {
+                    const itemId = button.dataset.id;
+                    fetch(`/cart/add/${itemId}/?qty=1`, {
                         method: 'POST',
                         headers: {
                             'X-CSRFToken': '{{ csrf_token }}',
@@ -48,29 +48,38 @@
                         fetch('/cart/count/')
                             .then(response => response.json())
                             .then(data => {
-                                let badge = document.querySelector('.cart-badge');
-                                if (!badge) {
+                                const badge = document.querySelector('.cart-badge');
+                                const count = data.count;
+
+                                if (badge) {
+                                    badge.innerText = count;
+                                    badge.style.display = count > 0 ? 'flex' : 'none';
+                                } else if (count > 0) {
                                     const cartLink = document.querySelector('a[href$="/cart/"]');
-                                    badge = document.createElement('span');
-                                    badge.className = 'cart-badge';
-                                    badge.style.position = 'absolute';
-                                    badge.style.top = '10px';
-                                    badge.style.right = '53px';
-                                    badge.style.backgroundColor = 'red';
-                                    badge.style.color = 'white';
-                                    badge.style.borderRadius = '50%';
-                                    badge.style.fontSize = '11px';
-                                    badge.style.fontWeight = 'bold';
-                                    badge.style.width = '20px';
-                                    badge.style.height = '20px';
-                                    badge.style.textAlign = 'center';
-                                    badge.style.display = 'flex';
-                                    badge.style.justifyContent = 'center';
-                                    badge.style.alignItems = 'center';
-                                    cartLink.appendChild(badge);
+                                    const newBadge = document.createElement('span');
+                                    newBadge.className = 'cart-badge';
+                                    newBadge.innerText = count;
+
+                                    Object.assign(newBadge.style, {
+                                        position: 'absolute',
+                                        top: '10px',
+                                        right: '53px',
+                                        backgroundColor: 'red',
+                                        color: 'white',
+                                        borderRadius: '50%',
+                                        fontSize: '11px',
+                                        fontWeight: 'bold',
+                                        width: '20px',
+                                        height: '20px',
+                                        textAlign: 'center',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    });
+
+                                    cartLink.appendChild(newBadge);
                                 }
-                                badge.innerText = data.count;
-                                badge.style.display = data.count > 0 ? 'flex' : 'none';
+
                                 M.toast({html: 'Item added to cart'});
                             });
                     });
