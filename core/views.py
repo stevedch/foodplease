@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views.decorators.http import require_POST
@@ -47,30 +48,22 @@ def user_profile(request):
     return render(request, 'core/user_profile.html', {'users': users})
 
 
-from django.shortcuts import get_object_or_404
-
-
 def view_cart(request):
     cart = request.session.get('cart', [])
     items = []
     total = 0
-
     if isinstance(cart, dict):
-        # Migración: transformar dict a lista de objetos
         cart = [{"menu_id": int(k), "quantity": v} for k, v in cart.items()]
         request.session['cart'] = cart
-
     for entry in cart:
         if not isinstance(entry, dict) or "menu_id" not in entry:
-            continue  # ignora entradas inválidas
-
+            continue
         item = get_object_or_404(MenuItem, id=entry["menu_id"])
         quantity = entry.get("quantity", 1)
         item.quantity = quantity
         item.subtotal = item.price * quantity
         items.append(item)
         total += item.subtotal
-
     return render(request, 'core/cart.html', {
         'items': items,
         'total': total
@@ -87,10 +80,8 @@ def remove_from_cart(request, item_id):
             if item["quantity"] > 1:
                 item["quantity"] -= 1
                 updated_cart.append(item)
-            # Si la cantidad es 1, no se agrega a updated_cart (se elimina)
         else:
             updated_cart.append(item)
-
     request.session['cart'] = updated_cart
     return redirect('cart_list')
 
@@ -106,7 +97,6 @@ def add_to_order(request, item_id):
     if request.method == 'POST':
         qty = int(request.GET.get('qty', 1))
         cart = request.session.get('cart', [])
-
         if isinstance(cart, dict):
             cart = [{"menu_id": int(k), "quantity": v} for k, v in cart.items()]
 
