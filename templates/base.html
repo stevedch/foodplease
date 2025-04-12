@@ -92,14 +92,14 @@
 <div class="navbar-fixed">
     <nav class="teal">
         <div class="nav-wrapper container">
-            <a href="{% url 'menu_list' %}" class="brand-logo">
+            <a href="{% url 'menu_view' %}" class="brand-logo">
                 <img src="{% static 'img/iconfoooplese.png' %}" alt="FoodPlease Logo"
                      style="height: 200px;margin-top: -62px;margin-right: 0;">
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{% url 'menu_list' %}"><i class="material-icons left">restaurant_menu</i>Menu</a></li>
+                <li><a href="{% url 'menu_view' %}"><i class="material-icons left">restaurant_menu</i>Menu</a></li>
                 <li>
-                    <a href="{% url 'cart_list' %}" class="cart-icon-wrapper"
+                    <a href="{% url 'cart_view' %}" class="cart-icon-wrapper"
                        style="position: relative; display: inline-block;">
                         <i class="material-icons left">shopping_cart</i>
                         {% if cart_item_count > 0 %}
@@ -108,8 +108,8 @@
                         Cart
                     </a>
                 </li>
-                <!--li><a href="{% url 'order_history' %}"><i class="material-icons left">history</i>My Orders</a></li-->
-                <!--li><a href="{% url 'user_profile' %}"><i class="material-icons left">person</i>Profile</a></li-->
+                <!--li><a href="{% url 'order_history_view' %}"><i class="material-icons left">history</i>My Orders</a></li-->
+                <!--li><a href="{% url 'user_profile_view' %}"><i class="material-icons left">person</i>Profile</a></li-->
             </ul>
         </div>
     </nav>
