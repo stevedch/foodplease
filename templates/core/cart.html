@@ -3,84 +3,110 @@
 {% block title %}Your Cart{% endblock %}
 
 {% block content %}
-<div class="container" style="width: 100%; max-width: 100%;">
-    <h4 class="center-align">Your Cart</h4>
-    {% if items %}
-    <div class="card">
-        <div class="card-content">
-            <table class="highlight responsive-table striped full-width-table">
-                <thead class="teal lighten-1 white-text">
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in items %}
-                    <tr>
-                        <td>{{ item.name }}</td>
-                        <td>${{ item.price }}</td>
-                        <td>{{ item.quantity }}</td>
-                        <td>${{ item.subtotal }}</td>
-                        <td>
-                            <form method="post" action="{% url 'remove_from_cart' item.id %}" style="display:inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn-flat red-text">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    <tr class="teal lighten-5">
-                        <td colspan="3"><strong>Total</strong></td>
-                        <td><strong>${{ total }}</strong></td>
-                        <td>
-                            <form method="post" action="{% url 'clear_cart' %}">
-                                {% csrf_token %}
-                                <button type="submit" class="btn red lighten-1 white-text">Clear Cart</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="container" style="width: 100%; max-width: 100%;">
+        <h4 class="center-align">Your Cart</h4>
+        {% if items %}
+            <div class="card">
+                <div class="card-content">
+                    <table class="highlight responsive-table striped full-width-table">
+                        <thead class="teal lighten-1 white-text">
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>${{ item.subtotal }}</td>
+                                <td>
+                                    <form method="post" action="{% url 'remove_from_cart' item.id %}"
+                                          style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-flat red-text">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr class="teal lighten-5 total-row">
+                            <td colspan="3"><strong>Total</strong></td>
+                            <td><strong>${{ total }}</strong></td>
+                            <td>
+                                <form method="post" action="{% url 'clear_cart' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn red lighten-1 white-text">Clear Cart</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% else %}
+            <div class="card-panel yellow lighten-4 center-align">
+                <p>Your cart is currently empty.</p>
+            </div>
+        {% endif %}
     </div>
-    {% else %}
-    <div class="card-panel yellow lighten-4 center-align">
-        <p>Your cart is currently empty.</p>
-    </div>
-    {% endif %}
-</div>
 
-<style>
-.full-width-table {
-    width: 100%;
-    table-layout: auto;
-}
+    <style>
+        .full-width-table {
+            width: 100%;
+            table-layout: auto;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
 
-.card-content {
-    padding: 0;
-}
+        .card-content {
+            padding: 0;
+        }
 
-table.striped > tbody > tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
+        table.striped > tbody > tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
 
-table th, table td {
-    padding: 16px;
-    text-align: left;
-}
+        table th, table td {
+            padding: 16px;
+            text-align: left;
+        }
 
-.card {
-    width: 100%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-}
+        /* Header corners */
+        thead tr th {
+            border-radius: 0;
+        }
 
-.teal.lighten-1 {
-    background-color: #26a69a !important;
-}
-</style>
+        thead tr th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        thead tr th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        /* Footer (total row) corners */
+        .total-row td:first-child {
+            border-bottom-left-radius: 10px;
+        }
+
+        .total-row td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+
+        .card {
+            width: 100%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .teal.lighten-1 {
+            background-color: #26a69a !important;
+        }
+    </style>
 {% endblock %}
